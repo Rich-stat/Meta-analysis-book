@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Binary data - experimental &amp; control counts – Meta-analysis in Systematic Reviews</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Correlation.html" rel="next">
+<link href="./Continuous_data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bfa8e401acfd329a31bfdee48f709e11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Binary.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Binary data - experimental &amp; control counts</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Binary data - experimental &amp; control counts</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Meta-analysis in Systematic Reviews</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Continuous_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Continuous data - experimental &amp; control means</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Binary.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Binary data - experimental &amp; control counts</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Correlations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Single_mean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Single mean values</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Proportions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Proportions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Contents in this chapter</h2>
+   
+  <ul>
+  <li><a href="#import-the-data-file-prepare-it-for-analysis" id="toc-import-the-data-file-prepare-it-for-analysis" class="nav-link active" data-scroll-target="#import-the-data-file-prepare-it-for-analysis"><span class="header-section-number">3.1</span> Import the data file &amp; prepare it for analysis:</a></li>
+  <li><a href="#the-meta-analysis" id="toc-the-meta-analysis" class="nav-link" data-scroll-target="#the-meta-analysis"><span class="header-section-number">3.2</span> The meta-analysis</a></li>
+  <li><a href="#the-forest-plot" id="toc-the-forest-plot" class="nav-link" data-scroll-target="#the-forest-plot"><span class="header-section-number">3.3</span> The Forest Plot</a></li>
+  <li><a href="#influence-diagnostics" id="toc-influence-diagnostics" class="nav-link" data-scroll-target="#influence-diagnostics"><span class="header-section-number">3.4</span> Influence Diagnostics</a></li>
+  <li><a href="#publication-bias" id="toc-publication-bias" class="nav-link" data-scroll-target="#publication-bias"><span class="header-section-number">3.5</span> Publication Bias</a>
+  <ul class="collapse">
+  <li><a href="#the-funnel-plot" id="toc-the-funnel-plot" class="nav-link" data-scroll-target="#the-funnel-plot"><span class="header-section-number">3.5.1</span> The Funnel Plot</a></li>
+  <li><a href="#eggers-regression" id="toc-eggers-regression" class="nav-link" data-scroll-target="#eggers-regression"><span class="header-section-number">3.5.2</span> Egger’s Regression</a></li>
+  <li><a href="#duval-tweedies-trim-and-fill" id="toc-duval-tweedies-trim-and-fill" class="nav-link" data-scroll-target="#duval-tweedies-trim-and-fill"><span class="header-section-number">3.5.3</span> Duval &amp; Tweedie’s trim-and-fill</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<p>This chapter shows how to do a meta-analysis on raw data in which the counts of binary events are recorded for (a) an experimental and (b) a control group, as well as the sample sizes (N) of both groups. <br> <br> Binary events are where there are two possible outcomes. For example, numbers reporting success/failure, recovery/no recovery, survival/death, or male/female in experimental and control groups.<br><br> The data you need for both the experimental and control groups are (a) the count of one of the binary events, <em>eg</em> survival, and (b) the total number of people in each group.</p>
+<section id="import-the-data-file-prepare-it-for-analysis" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="import-the-data-file-prepare-it-for-analysis"><span class="header-section-number">3.1</span> Import the data file &amp; prepare it for analysis:</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Click to see guidance to import and prepare the data">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see guidance to import and prepare the data
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Download the example Excel file <code>Meta analysis Binary data.xlsx</code> from Canvas and save it to your working directory (remember to set the location where you save this file as your working directory in RStudio).</li>
+<li>Import the file to R and store it as a dataframe object called <code>meta.bin</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-1" class="code-annotation-target"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>meta.bin <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"Meta analysis Binary data.xlsx"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2">2</button><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>meta.bin</span>
+<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>meta.bin <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3">3</button><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(class)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="1" data-code-annotation="1">Imports the excel file from your working directory and stores it as an object called <code>meta.bin</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="2" data-code-annotation="2">View the <code>meta.bin</code> dataframe</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="5" data-code-annotation="3">See the types of data in each column</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Author</th>
+<th style="text-align: right;">Ee</th>
+<th style="text-align: right;">Ne</th>
+<th style="text-align: right;">Ec</th>
+<th style="text-align: right;">Nc</th>
+<th style="text-align: left;">Subgroup</th>
+<th style="text-align: left;">RoB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Cook et al.&nbsp;(2014)</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">adult</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jones et al.&nbsp;(2010</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: left;">adult</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fielder (2018)</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">adult</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chioni et al.&nbsp;(2015)</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">youth</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Waller &amp; Hill (2017)</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">youth</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Walker (2011)</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: left;">adult</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mackenzie (2019)</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">adult</td>
+<td style="text-align: left;">Low</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Polycarpou (2020)</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: left;">youth</td>
+<td style="text-align: left;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gould &amp; Kelly (2011)</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">adult</td>
+<td style="text-align: left;">Low</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Modjatehdi (2021)</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">250</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">250</td>
+<td style="text-align: left;">adult</td>
+<td style="text-align: left;">Low</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Author</th>
+<th style="text-align: left;">Ee</th>
+<th style="text-align: left;">Ne</th>
+<th style="text-align: left;">Ec</th>
+<th style="text-align: left;">Nc</th>
+<th style="text-align: left;">Subgroup</th>
+<th style="text-align: left;">RoB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">character</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><br>We will want to create sub-groups (adult or youth) in the meta-analysis, so here we will convert the <code>Subgroup</code> variable to a factor:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>meta.bin <span class="ot">&lt;-</span> meta.bin <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Subgroup =</span> <span class="fu">as.factor</span>(Subgroup))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br>We can check the data types again:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>meta.bin <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(class) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Author</th>
+<th style="text-align: left;">Ee</th>
+<th style="text-align: left;">Ne</th>
+<th style="text-align: left;">Ec</th>
+<th style="text-align: left;">Nc</th>
+<th style="text-align: left;">Subgroup</th>
+<th style="text-align: left;">RoB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">character</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>You can see that the Subgroup variable is now a factor</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-meta-analysis" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-meta-analysis"><span class="header-section-number">3.2</span> The meta-analysis</h2>
+<p>(See Ch4 Harrer <em>et al</em>.)<br> This will use a random effects model using the imported binary data stored in the <code>meta.bin</code> object. The meta-analysis results are stored in an object called <code>meta.bin.result</code>.<br><br> This data set has two sub-groups: studies on (a) adults and (b) youths. This meta-analysis will therefore analyse these separately as sub-groups as well as combining all studies. The code therefore has a line specifying ‘subgroup’ as the column in the data headed ‘Subgroup’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>meta1.bin.result <span class="ot">&lt;-</span> <span class="fu">metabin</span>(<span class="at">event.e =</span> Ee, <span class="at">n.e =</span> Ne, <span class="at">event.c =</span> Ec, <span class="at">n.c =</span> Nc,</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> meta.bin,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">studlab =</span> Author,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">subgroup =</span> Subgroup,</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">common =</span> <span class="cn">FALSE</span>,  </span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">random =</span> <span class="cn">TRUE</span>,  </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4">4</button><span id="annotated-cell-1-7" class="code-annotation-target"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">method.tau =</span> <span class="st">"SJ"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5">5</button><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">method.random.ci =</span> <span class="st">"HK"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="6">6</button><span id="annotated-cell-1-9" class="code-annotation-target"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="7">7</button><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sm =</span> <span class="st">"OR"</span>,</span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">title =</span> <span class="st">"Staff studies binary"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="8">8</button><span id="annotated-cell-1-12" class="code-annotation-target"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(meta.bin.result)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">This line tells R the names of each column</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">The study label column name in the data file is ‘Author’</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="3">Specifies that there are sub-groups in a column called ‘Subgroup’</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="7" data-code-annotation="4">Method used to calculate tau squared. SJ = Sidik-Jonkman</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="8" data-code-annotation="5">Confidence Intervals calculated with Hartung-Knapp adjustment</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="9" data-code-annotation="6">Calculates the prediction interval</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="10" data-code-annotation="7">The effect size (OR = Odds Ratio)</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="8">8</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="12" data-code-annotation="8">Produces the output</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the output of the meta-analysis">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the output of the meta-analysis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     Staff studies binary
+
+                         OR           95%-CI %W(random) Subgroup
+Cook et al. (2014)   1.6275 [0.8157; 3.2471]        8.9    adult
+Jones et al. (2010   1.4762 [0.8025; 2.7153]       10.1    adult
+Fielder (2018)       2.3522 [1.1217; 4.9327]        8.3    adult
+Chioni et al. (2015) 1.7436 [1.0788; 2.8181]       12.1    youth
+Waller &amp; Hill (2017) 3.7241 [1.9126; 7.2515]        9.2    youth
+Walker (2011)        1.8718 [1.1393; 3.0754]       11.8    adult
+Mackenzie (2019)     0.7368 [0.3034; 1.7892]        6.7    adult
+Polycarpou (2020)    2.1429 [1.2320; 3.7271]       10.9    youth
+Gould &amp; Kelly (2011) 3.3478 [1.6230; 6.9057]        8.5    adult
+Modjatehdi (2021)    1.3918 [0.9330; 2.0763]       13.5    adult
+
+Number of studies: k = 10
+Number of observations: o = 2580 (o.e = 1240, o.c = 1340)
+Number of events: e = 652
+
+                         OR           95%-CI    t p-value
+Random effects model 1.8705 [1.3875; 2.5217] 4.74  0.0011
+Prediction interval         [0.7976; 4.3867]             
+
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1202 [0.0000; 0.5582]; tau = 0.3467 [0.0000; 0.7471]
+ I^2 = 36.9% [0.0%; 69.9%]; H = 1.26 [1.00; 1.82]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 14.27    9  0.1132
+
+Results for subgroups (random effects model):
+                   k     OR           95%-CI  tau^2    tau    Q   I^2
+Subgroup = adult   7 1.6870 [1.1424; 2.4912] 0.1197 0.3460 8.79 31.8%
+Subgroup = youth   3 2.3054 [0.9008; 5.9006] 0.0802 0.2832 3.30 39.5%
+
+Test for subgroup differences (random effects model):
+                  Q d.f. p-value
+Between groups 1.33    1  0.2480
+
+Details of meta-analysis methods:
+- Inverse variance method
+- Sidik-Jonkman estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 9)
+- Prediction interval based on t-distribution (df = 9)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The output shows:</p>
+<ul>
+<li>the effect sizes (OR) and CIs for each study</li>
+<li>the overall effect size = 1.8705; it is statistically significantly different from 1 (no effect) because P = 0.0011.</li>
+<li>There is low heterogeneity between the studies: I<sup>2</sup> = 36.9%, Q p-value = 0.1132</li>
+<li>The 2 sub-group effect sizes are 1.687 (adults) and 2.305 (youth), but the two groups are not statistically significantly different (P=0.248) <br><br></li>
+</ul>
+<p><em>NB<sub>1</sub></em> Odds ratio = 1 means that the effect of the experimental group is the same as the control group. In this study the OR = 1.87, and so overall the odds of success in the experimental group are 1.87 times that in the control group.<br> <em>NB<sub>2</sub></em> The <code>metabin()</code> function automatically converts odds to log odds for the calculations, but the reconverts them back to normal odds for the output</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="To see the log odds (log~e~) value of the pooled effect size">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+To see the log odds (log<sub>e</sub>) value of the pooled effect size
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meta.bin.result<span class="sc">$</span>TE.random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6262237</code></pre>
+</div>
+</div>
+<p>To convert the log<sub>e</sub> it back to normal, take the exponential:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(meta.bin.result<span class="sc">$</span>TE.random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.870533</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-forest-plot" class="level2 page-columns page-full" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="the-forest-plot"><span class="header-section-number">3.3</span> The Forest Plot</h2>
+<p>(See Ch6 Harrer <em>et al</em>.) <br>The forest plot presents the results of the meta-analysis graphically. It uses the meta-analysis results created above which were stored in an object called <code>meta.bin.result</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="st">"forest_bin.png"</span>, <span class="at">width =</span> <span class="dv">3800</span>, <span class="at">height =</span> <span class="dv">1600</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(meta.bin.result, </span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE, </span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">smlab =</span> <span class="st">"Forest Plot: Odds Ratio"</span>, </span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">overall=</span><span class="cn">TRUE</span>, </span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>, </span>
+<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">text.predict =</span> <span class="st">"Prediction interval"</span>, </span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">leftcols =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">'Ee'</span>, <span class="st">'Ne'</span>, <span class="st">'Ec'</span>, <span class="st">'Nc'</span>), </span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Study"</span>, <span class="st">"E.Event"</span>, <span class="st">"E.N"</span>, <span class="st">"C.Event"</span>, <span class="st">"C.N"</span>), </span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">plotwidth =</span> <span class="st">"8cm"</span>, </span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Odds Ratio"</span>, </span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">label.left =</span> <span class="st">"Favours Control"</span>, </span>
+<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">label.right =</span> <span class="st">"Favours Experiment"</span>, </span>
+<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">colgap =</span> <span class="st">'0.3cm'</span>, </span>
+<span id="annotated-cell-2-16"><a href="#annotated-cell-2-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">colgap.forest =</span> <span class="st">'0.3cm'</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-17" class="code-annotation-target"><a href="#annotated-cell-2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">This line will save the plot in a png file. Can also save as a pdf() or svg(). Harrer <em>et al</em>. Ch6.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="17" data-code-annotation="2">Turns off the png() function.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>The forest plot has a default layout, but you can specify which columns to include with <code>leftcols()</code> and re-title them with <code>leftlabs()</code>. <code>rightcols()</code> specifies which columns appear on the right. Other arguments specify layout - see Harrer <em>et al</em>. Ch 6.</p>
+<p>The forest plot looks like this:</p>
+<div class="page-columns page-full">
+<div class="quarto-figure quarto-figure-right page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><img src="forest_bin.png" class="img-fluid quarto-figure quarto-figure-right figure-img column-body-outset" style="width:125.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="influence-diagnostics" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="influence-diagnostics"><span class="header-section-number">3.4</span> Influence Diagnostics</h2>
+<p>Influential cases have a large impact on the pooled effect or heterogeneity, regardless of how high or low the effect is. For example one very large study will have a high weight and may influence the pooled effect strongly. Outliers may be influential, but not always.<br> <br> <code>(a)</code> To calculate influence diagnostics, use the <code>InfluenceAnalysis()</code> function (part of the <code>dmetar</code> package):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>meta.bin.infl <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(meta.bin.result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in top right have strong effect on heterogeneity and pooled effect.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.bin.infl, <span class="st">"baujat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the Baujat plot">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the Baujat plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Binary_files/figure-html/bin.bau2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><code>(c)</code> A plot of the full influence diagnostics can be seen with the <code>plot()</code> function.<br> Studies thought to be influential are displayed in red.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.bin.infl, <span class="st">"influence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the influence diagnostics plot plot">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the influence diagnostics plot plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Binary_files/figure-html/bin.infl2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol type="a">
+<li>Stand. residual: standardised residuals are the standardised deviation of the effect size of each paper from the pooled effect size.<br></li>
+<li>DFFITS value: reports similar effect to Stand. residuals. Indicates how much the pooled effect changes when a study is removed, expressed in standard deviations (<em>ie</em> how much influence the paper has).<br></li>
+<li>Cook’s distance: similar to DFFITS calculation, but only has +ve values. Large value = strong influence.<br></li>
+<li>Covariance ratio: calculates how variance of the pooled effect size changes when a study is removed. Value &lt;1 indicates that removing a study results in a more precise estimate of the pooled effect size.<br></li>
+<li>Tau-squared (L-O-O means Leave one out) &amp; Q values: Tau-square (variance of the pooled effect size) and Q-values when each study is excluded.<br></li>
+<li>Hat and Weight values: weight is simply the size of the study. Higher weight = greater precision of a study. Weights used to calc pooled effect size. Inverse of the variance of a study = weight. HAT value is similar.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="publication-bias" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="publication-bias"><span class="header-section-number">3.5</span> Publication Bias</h2>
+<p>Publication bias occurs when studies, usually smaller ones, are not published because they do not report statistically significant effects. Consequently, a meta-analysis could over-emphasise an effect if such papers are excluded. Publication bias tests attempt to estimate if there might be such missing papers.<br> Here, we will create (1) a funnel plot, (2) perform Egger’s regression test and (3) Duval &amp; Tweedie’s trim-and-fill test. <br></p>
+<section id="the-funnel-plot" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="the-funnel-plot"><span class="header-section-number">3.5.1</span> The Funnel Plot</h3>
+<p>To generate a funnel plot for the <code>meta1.cont</code> object that stores the results of the meta-analysis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(meta.bin.result, </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Odds Ratio"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2">2</button><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3">3</button><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pos.studlab =</span> <span class="dv">3</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4">4</button><span id="annotated-cell-6-5" class="code-annotation-target"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.studlab =</span> <span class="fl">0.4</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="5">5</button><span id="annotated-cell-6-6" class="code-annotation-target"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">5.0</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="1">Specifies the label on the x-axis</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="2">To add labels to each study</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="4" data-code-annotation="3">The number indicates the position of the labels. 3 means centered.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="5" data-code-annotation="4">Changes the font size of the text for the study labels</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="6" data-code-annotation="5">Use xlim() if you want to change the range on the x-axis</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the funnel plot">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the funnel plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Binary_files/figure-html/funnel.bin2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="eggers-regression" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="eggers-regression"><span class="header-section-number">3.5.2</span> Egger’s Regression</h3>
+<p>Assesses funnel plot symmetry. If the funnel plot is symmetrical, it suggests that there are no missing studies.<br> In this case, <code>meta.bin</code> has subgroups. Egger’s regression test cannot be performed on a meta-analysis with subgroups. So, I will re-do the above meta-analysis without the subgroups and store it in another object called <code>meta.bin.resultE</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>meta.bin.resultE <span class="ot">&lt;-</span> <span class="fu">metabin</span>(<span class="at">event.e =</span> Ee, <span class="at">n.e =</span> Ne, <span class="at">event.c =</span> Ec, <span class="at">n.c =</span> Nc, </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> meta.bin,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">studlab =</span> Author,  </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">common =</span> <span class="cn">FALSE</span>,  </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">random =</span> <span class="cn">TRUE</span>,  </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">method.tau =</span> <span class="st">"SJ"</span>, </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">method.random.ci =</span> <span class="st">"HK"</span>,  </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">prediction =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sm =</span> <span class="st">"OR"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">title =</span> <span class="st">"Staff studies binary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>and then do the Egger’s regression test:<br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metabias</span>(meta.bin.resultE, <span class="at">method.bias =</span> <span class="st">"peters"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see Egger's Regression test output">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see Egger’s Regression test output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     Staff studies binary
+
+Linear regression test of funnel plot asymmetry
+
+Test result: t = 0.58, df = 8, p-value = 0.5788
+Bias estimate: 36.4800 (SE = 63.0483)
+
+Details:
+- multiplicative residual heterogeneity variance (tau^2 = 7.2802)
+- predictor: inverse of total sample size
+- weight:    inverse variance of average event probability
+- reference: Peters et al. (2006), JAMA</code></pre>
+</div>
+</div>
+<p>P&gt;0.05 means the data is symmetrical, and there do not appear to be any missing studies.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="duval-tweedies-trim-and-fill" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="duval-tweedies-trim-and-fill"><span class="header-section-number">3.5.3</span> Duval &amp; Tweedie’s trim-and-fill</h3>
+<p>If there is asymmetry, it imputes ‘missing’ studies and adds them until symmetry is achieved.<br> Assumes there are small studies that are missing. It re-does the meta-analysis and estimates pooled effect size as if all studies had been included.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tf.bin <span class="ot">&lt;-</span> <span class="fu">trimfill</span>(meta.bin.result)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tf.bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see Duval &amp; Tweedie's trim-and-fill output">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see Duval &amp; Tweedie’s trim-and-fill output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     Staff studies binary
+
+Number of studies: k = 10 (with 0 added studies)
+Number of observations: o = 2580 (o.e = 1240, o.c = 1340)
+Number of events: e = 652
+
+                         OR           95%-CI    t p-value
+Random effects model 1.8705 [1.3875; 2.5217] 4.74  0.0011
+Prediction interval         [0.7976; 4.3867]             
+
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1202 [0.0000; 0.5582]; tau = 0.3467 [0.0000; 0.7471]
+ I^2 = 36.9% [0.0%; 69.9%]; H = 1.26 [1.00; 1.82]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 14.27    9  0.1132
+
+Details of meta-analysis methods:
+- Inverse variance method
+- Sidik-Jonkman estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 9)
+- Prediction interval based on t-distribution (df = 9)
+- Trim-and-fill method to adjust for funnel plot asymmetry (L-estimator)</code></pre>
+</div>
+</div>
+<p>Here, you can see that the function has not added any additional studies which it has assumed have not been published.<br> The odds ratio effect size remains at 1.8705.</p>
+</div>
+</div>
+</div>
+<p><br> You can then also re-do the funnel plot, using the <code>tf.bin</code> object that we have just created above, with the imputed studies added (<em>NB</em> there is no need to do this for this example data as there are no imputed missing studies, but it is done here to show you how):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(tf.bin, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Odds Ratio"</span>, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pos.studlab =</span> <span class="dv">3</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.studlab =</span> <span class="fl">0.4</span>, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">5.0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the revised funnel plot">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the revised funnel plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Binary_files/figure-html/DT.bin.funnel2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The ‘imputed’ studies that are added are shown with open circles.<br> There are no missing studies in this example data set.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          trigger: 'click',
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          positionFixed: true,
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Continuous_data.html" class="pagination-link" aria-label="Continuous data - experimental &amp; control means">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Continuous data - experimental &amp; control means</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Correlation.html" class="pagination-link" aria-label="Correlations">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Correlations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
