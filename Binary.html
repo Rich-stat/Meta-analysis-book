@@ -198,12 +198,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Proportions</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -456,7 +450,7 @@ Click to see guidance to import and prepare the data
 </section>
 <section id="the-meta-analysis" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="the-meta-analysis"><span class="header-section-number">3.2</span> The meta-analysis</h2>
-<p>(See Ch4 Harrer <em>et al</em>.)<br> This will use a random effects model using the imported binary data stored in the <code>meta.bin</code> object. The meta-analysis results are stored in an object called <code>meta.bin.result</code>.<br><br> This data set has two sub-groups: studies on (a) adults and (b) youths. This meta-analysis will therefore analyse these separately as sub-groups as well as combining all studies. The code therefore has a line specifying ‘subgroup’ as the column in the data headed ‘Subgroup’.</p>
+<p>(See Ch4 Harrer <em>et al</em>.)<br> This will use a random effects model using the imported binary data stored in the <code>meta.bin</code> object and the <code>metabin()</code> function. The meta-analysis results are stored in an object called <code>meta.bin.result</code>.<br><br> This data set has two sub-groups: studies on (a) adults and (b) youths. This meta-analysis will therefore analyse these separately as sub-groups as well as combining all studies. The code therefore has a line specifying ‘subgroup’ as the column in the data headed ‘Subgroup’.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>meta1.bin.result <span class="ot">&lt;-</span> <span class="fu">metabin</span>(<span class="at">event.e =</span> Ee, <span class="at">n.e =</span> Ne, <span class="at">event.c =</span> Ec, <span class="at">n.c =</span> Nc,</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> meta.bin,</span>

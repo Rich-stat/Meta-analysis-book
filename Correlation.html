@@ -198,12 +198,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Proportions</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -251,7 +245,7 @@ Click to see guidance to import and prepare the data
 <div class="callout-body-container callout-body">
 <ul>
 <li>Download the example Excel file <code>Meta analysis corr data.xlsx</code> from Canvas and save it to your working directory (remember to set the location where you save this file as your working directory in RStudio).</li>
-<li>Import the file to R and store it as a dataframe object called <code>meta.bin</code>:</li>
+<li>Import the file to R and store it as a dataframe object called <code>meta.corr</code>:</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-1" class="code-annotation-target"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>meta.corr <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"Meta analysis corr data.xlsx"</span>)</span>
@@ -559,7 +553,7 @@ Click to see guidance to import and prepare the data
 </section>
 <section id="the-meta-analysis" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="the-meta-analysis"><span class="header-section-number">4.2</span> The meta-analysis</h2>
-<p>(See Ch4 Harrer <em>et al</em>.)<br> This will use a random effects model using the imported correlation data stored in the <code>meta.corr</code> object. The meta-analysis results are stored in an object called <code>m.cor</code>.<br><br> This data set has two sub-groups: studies on (a) the general population and (b) people with a chronic illness. This meta-analysis will therefore analyse the association of health and well-being separately as sub-groups as well as combining all studies. The code therefore has a line specifying ‘subgroup’ as the column in the data headed ‘population’.</p>
+<p>(See Ch4 Harrer <em>et al</em>.)<br> This will use a random effects model using the imported correlation data stored in the <code>meta.corr</code> object and the <code>metacor()</code> function. The meta-analysis results are stored in an object called <code>m.cor</code>.<br><br> This data set has two sub-groups: studies on (a) the general population and (b) people with a chronic illness. This meta-analysis will therefore analyse the association of health and well-being separately as sub-groups as well as combining all studies. The code therefore has a line specifying ‘subgroup’ as the column in the data headed ‘population’.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> cor,</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> n,</span>
@@ -937,7 +931,7 @@ Details:
 </section>
 <section id="duval-tweedies-trim-and-fill" class="level3" data-number="4.5.3">
 <h3 data-number="4.5.3" class="anchored" data-anchor-id="duval-tweedies-trim-and-fill"><span class="header-section-number">4.5.3</span> Duval &amp; Tweedie’s trim-and-fill</h3>
-<p>If there is asymmetry, it imputes ‘missing’ studies and adds them until symmetry is achieved.<br> Assumes there are small studies that are missing. It re-does the meta-analysis and estimates pooled effect size as if all studies had been included.</p>
+<p>If there is asymmetry, this imputes ‘missing’ studies and adds them until symmetry is achieved.<br> it assumes there are small studies that are missing. It re-does the meta-analysis and estimates pooled effect size as if all studies had been included.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tf.cor <span class="ot">&lt;-</span>  <span class="fu">trimfill</span>(m.cor)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tf.cor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

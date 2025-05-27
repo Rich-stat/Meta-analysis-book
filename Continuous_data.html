@@ -198,12 +198,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Proportions</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -519,7 +513,7 @@ Click to see guidance to import and prepare the data
 </section>
 <section id="the-meta-analysis" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="the-meta-analysis"><span class="header-section-number">2.2</span> The meta-analysis</h2>
-<p>(Ch4 Harrer <em>et al</em>.)<br>This will use a random effects model using the imported continuous data stored in the <code>meta1</code> object. The meta-analysis results are stored in an object called <code>meta1.cont</code>.<br><br> This data set has two sub-groups: studies on (a) adults and (b) youths. This meta-analysis will therefore analyse these separately as sub-groups as well as combining all studies. The code therefore has a line specifying ‘subgroup’ as the column in the data headed ‘Subgroup’.</p>
+<p>(Ch4 Harrer <em>et al</em>.)<br>This will use a random effects model using the imported continuous data stored in the <code>meta1</code> object and the <code>metacont()</code> function. The meta-analysis results are stored in an object called <code>meta1.cont</code>.<br><br> This data set has two sub-groups: studies on (a) adults and (b) youths. This meta-analysis will therefore analyse these separately as sub-groups as well as combining all studies. The code therefore has a line specifying ‘subgroup’ as the column in the data headed ‘Subgroup’.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>meta1.cont <span class="ot">&lt;-</span> <span class="fu">metacont</span>(<span class="at">n.e =</span> Ne, <span class="at">mean.e =</span> Me, <span class="at">sd.e =</span> Se, <span class="at">n.c =</span> Nc, <span class="at">mean.c =</span> Mc, <span class="at">sd.c =</span> Sc,</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> meta1,</span>
@@ -714,7 +708,7 @@ Click to see the Baujat plot
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Continuous_data_files/figure-html/baujat2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Continuous_data_files/figure-html/cont.baujat2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -835,7 +829,7 @@ Click to see the funnel plot
 </div>
 <p>and then do the Egger’s regression test:<br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eggers.test</span>(meta1.contE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metabias</span>(meta1.contE, <span class="at">method.bias =</span> <span class="st">"linreg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see Egger's Regression test output">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
@@ -851,13 +845,18 @@ Click to see Egger’s Regression test output
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Eggers' test of the intercept 
-============================= 
+<pre><code>Review:     Staff Studies
 
- intercept        95% CI    t         p
-     3.189 -7.41 - 13.79 0.59 0.5717667
+Linear regression test of funnel plot asymmetry
 
-Eggers' test does not indicate the presence of funnel plot asymmetry. </code></pre>
+Test result: t = 0.59, df = 8, p-value = 0.5718
+Bias estimate: 3.1890 (SE = 5.4093)
+
+Details:
+- multiplicative residual heterogeneity variance (tau^2 = 20.1402)
+- predictor: standard error
+- weight:    inverse variance
+- reference: Egger et al. (1997), BMJ</code></pre>
 </div>
 </div>
 <p>P&gt;0.05 means the data is symmetrical, there do not appear to be any missing studies.</p>

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -125,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Guide</span></a>
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -164,12 +198,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Proportions</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -177,52 +205,586 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
-    <h2 id="toc-title">Contents</h2>
+    <h2 id="toc-title">Contents in this chapter</h2>
    
   <ul>
-  <li><a href="#import-the-data-file-and-prepare-it-for-analysis" id="toc-import-the-data-file-and-prepare-it-for-analysis" class="nav-link active" data-scroll-target="#import-the-data-file-and-prepare-it-for-analysis"><span class="header-section-number">5.0.1</span> Import the data file and prepare it for analysis:</a></li>
-  <li><a href="#the-meta-analysis" id="toc-the-meta-analysis" class="nav-link" data-scroll-target="#the-meta-analysis"><span class="header-section-number">5.0.2</span> The meta-analysis</a></li>
-  <li><a href="#the-forest-plot" id="toc-the-forest-plot" class="nav-link" data-scroll-target="#the-forest-plot"><span class="header-section-number">5.0.3</span> The Forest Plot</a></li>
-  <li><a href="#influence-diagnostics" id="toc-influence-diagnostics" class="nav-link" data-scroll-target="#influence-diagnostics"><span class="header-section-number">5.0.4</span> Influence Diagnostics</a></li>
-  <li><a href="#publication-bias" id="toc-publication-bias" class="nav-link" data-scroll-target="#publication-bias"><span class="header-section-number">5.0.5</span> Publication Bias</a></li>
-  <li><a href="#the-funnel-plot" id="toc-the-funnel-plot" class="nav-link" data-scroll-target="#the-funnel-plot"><span class="header-section-number">5.0.6</span> The Funnel Plot</a></li>
-  <li><a href="#eggers-regression" id="toc-eggers-regression" class="nav-link" data-scroll-target="#eggers-regression"><span class="header-section-number">5.0.7</span> Egger’s Regression</a></li>
-  <li><a href="#duval-tweedies-trim-and-fill" id="toc-duval-tweedies-trim-and-fill" class="nav-link" data-scroll-target="#duval-tweedies-trim-and-fill"><span class="header-section-number">5.0.8</span> Duval &amp; Tweedie’s trim-and-fill</a></li>
+  <li><a href="#import-the-data-file-and-prepare-it-for-analysis" id="toc-import-the-data-file-and-prepare-it-for-analysis" class="nav-link active" data-scroll-target="#import-the-data-file-and-prepare-it-for-analysis"><span class="header-section-number">5.1</span> Import the data file and prepare it for analysis:</a></li>
+  <li><a href="#the-meta-analysis" id="toc-the-meta-analysis" class="nav-link" data-scroll-target="#the-meta-analysis"><span class="header-section-number">5.2</span> The meta-analysis</a></li>
+  <li><a href="#the-forest-plot" id="toc-the-forest-plot" class="nav-link" data-scroll-target="#the-forest-plot"><span class="header-section-number">5.3</span> The Forest Plot</a></li>
+  <li><a href="#influence-diagnostics" id="toc-influence-diagnostics" class="nav-link" data-scroll-target="#influence-diagnostics"><span class="header-section-number">5.4</span> Influence Diagnostics</a></li>
+  <li><a href="#publication-bias" id="toc-publication-bias" class="nav-link" data-scroll-target="#publication-bias"><span class="header-section-number">5.5</span> Publication Bias</a>
+  <ul class="collapse">
+  <li><a href="#the-funnel-plot" id="toc-the-funnel-plot" class="nav-link" data-scroll-target="#the-funnel-plot"><span class="header-section-number">5.5.1</span> The Funnel Plot</a></li>
+  <li><a href="#eggers-regression" id="toc-eggers-regression" class="nav-link" data-scroll-target="#eggers-regression"><span class="header-section-number">5.5.2</span> Egger’s Regression</a></li>
+  <li><a href="#duval-tweedies-trim-and-fill" id="toc-duval-tweedies-trim-and-fill" class="nav-link" data-scroll-target="#duval-tweedies-trim-and-fill"><span class="header-section-number">5.5.3</span> Duval &amp; Tweedie’s trim-and-fill</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<section id="import-the-data-file-and-prepare-it-for-analysis" class="level3" data-number="5.0.1">
-<h3 data-number="5.0.1" class="anchored" data-anchor-id="import-the-data-file-and-prepare-it-for-analysis"><span class="header-section-number">5.0.1</span> Import the data file and prepare it for analysis:</h3>
+<p>Some papers simply report a mean value of a result for one group; they have no comparison group nor control. This chapter shows how to do a meta-analysis for data which are reported in papers as a single mean value and its standard deviation (sd). <br>The example data shows the mean depression scores (Beck Depression Inventory II score) reported in 6 papers each of which examined depression patients who participated in psychotherapy trials.</p>
+<section id="import-the-data-file-and-prepare-it-for-analysis" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="import-the-data-file-and-prepare-it-for-analysis"><span class="header-section-number">5.1</span> Import the data file and prepare it for analysis:</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Click to see guidance to import and prepare the data">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see guidance to import and prepare the data
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Download the example Excel file <code>BdiScoresmean.xlsx</code> from Canvas and save it to your working directory (remember to set the location where you save this file as your working directory in RStudio).</li>
+<li>Import the file to R and store it as a dataframe object called <code>BdiScores</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a>BdiScores <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"BdiScoresmean.xlsx"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a>BdiScores</span>
+<span id="annotated-cell-10-3"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-10-4"><a href="#annotated-cell-10-4" aria-hidden="true" tabindex="-1"></a>BdiScores <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="3">3</button><span id="annotated-cell-10-5" class="code-annotation-target"><a href="#annotated-cell-10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(class)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="1" data-code-annotation="1">Imports the excel file from your working directory and stores it as an object called <code>BdiScores</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="2" data-code-annotation="2">View the <code>BdiScores</code> dataframe</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="5" data-code-annotation="3">See the types of data in each column</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">author</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DeRubeis, 2005</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">32.6</td>
+<td style="text-align: right;">9.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dimidjian, 2006</td>
+<td style="text-align: right;">145</td>
+<td style="text-align: right;">31.9</td>
+<td style="text-align: right;">7.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dozois, 2009</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">28.6</td>
+<td style="text-align: right;">9.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lesperance, 2007</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: right;">30.3</td>
+<td style="text-align: right;">9.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">McBride, 2007</td>
+<td style="text-align: right;">301</td>
+<td style="text-align: right;">31.9</td>
+<td style="text-align: right;">9.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quilty, 2014</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">29.8</td>
+<td style="text-align: right;">8.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">author</th>
+<th style="text-align: left;">n</th>
+<th style="text-align: left;">mean</th>
+<th style="text-align: left;">sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">numeric</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><br>We can see that the data are stored as numeric values, and this is OK.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="the-meta-analysis" class="level3" data-number="5.0.2">
-<h3 data-number="5.0.2" class="anchored" data-anchor-id="the-meta-analysis"><span class="header-section-number">5.0.2</span> The meta-analysis</h3>
+<section id="the-meta-analysis" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-meta-analysis"><span class="header-section-number">5.2</span> The meta-analysis</h2>
+<p>(See Ch4 Harrer <em>et al</em>.)<br> This will use a random effects model using the imported data stored in the <code>BdiScores</code> object and the <code>metamean()</code> function. The meta-analysis results are stored in an object called <code>metaBdi</code>.<br><br> This meta-analysis will compare the mean values reported by the 6 papers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>metaBdi <span class="ot">&lt;-</span> <span class="fu">metamean</span>(<span class="at">n =</span> n,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">mean =</span> mean,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sd =</span> sd,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4">4</button><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">studlab =</span> author,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5">5</button><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> BdiScores,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="6">6</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sm =</span> <span class="st">"MRAW"</span>,</span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="7">7</button><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="8">8</button><span id="annotated-cell-1-9" class="code-annotation-target"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method.tau =</span> <span class="st">"REML"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="9">9</button><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method.random.ci =</span> <span class="st">"HK"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="10">10</button><span id="annotated-cell-1-11" class="code-annotation-target"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">title =</span> <span class="st">"BDI-II Scores"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="11">11</button><span id="annotated-cell-1-12" class="code-annotation-target"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">prediction =</span> <span class="cn">TRUE</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="12">12</button><span id="annotated-cell-1-13" class="code-annotation-target"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(metaBdi)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">The number of participants is in a column called ‘n’</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">The mean values are in a column headed ‘mean’</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="3">The sd values are in a column headed ‘sd’</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="4">The names of each study are in a column headed ‘author’</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="5" data-code-annotation="5">The data is in a dataframe object called ‘BdiScores’</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="6">Raw (untransformed) mean values are used. (If means cannot be negative, it may be best to log-transform the data with <code>sm="MLN"</code>)</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="8" data-code-annotation="7">A random effects model is used</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="8">8</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="9" data-code-annotation="8">Method used to calculate tau squared. REML=restricted maximum likelihood</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="9">9</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="10" data-code-annotation="9">Confidence Intervals calculated with Hartung-Knapp adjustment</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="10">10</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="11" data-code-annotation="10">The title for the output</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="11">11</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="12" data-code-annotation="11">Insert the prediction interval</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="12">12</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="13" data-code-annotation="12">Produces the output</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the output of the meta-analysis">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the output of the meta-analysis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     BDI-II Scores
+
+                    mean             95%-CI %W(random)
+DeRubeis, 2005   32.6000 [31.2268; 33.9732]       18.0
+Dimidjian, 2006  31.9000 [30.6955; 33.1045]       19.4
+Dozois, 2009     28.6000 [25.7993; 31.4007]        9.1
+Lesperance, 2007 30.3000 [28.8033; 31.7967]       17.0
+McBride, 2007    31.9000 [30.8607; 32.9393]       20.7
+Quilty, 2014     29.8000 [28.1472; 31.4528]       15.8
+
+Number of studies: k = 6
+Number of observations: o = 920
+
+                        mean             95%-CI
+Random effects model 31.1221 [29.6656; 32.5786]
+Prediction interval          [28.1036; 34.1406]
+
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 1.0937 [0.0603; 12.9913]; tau = 1.0458 [0.2456; 3.6043]
+ I^2 = 64.3% [13.8%; 85.2%]; H = 1.67 [1.08; 2.60]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 14.00    5  0.0156
+
+Details of meta-analysis methods:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 5)
+- Prediction interval based on t-distribution (df = 5)
+- Untransformed (raw) means</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The output shows:</p>
+<ul>
+<li>the effect sizes (the mean values) and their CIs for each study</li>
+<li>the overall effect size (mean) = 31.1221.</li>
+<li>There is moderate heterogeneity between the studies: I<sup>2</sup> = 64.3%, Q p-value = 0.0156 <br><br></li>
+</ul>
 </section>
-<section id="the-forest-plot" class="level3" data-number="5.0.3">
-<h3 data-number="5.0.3" class="anchored" data-anchor-id="the-forest-plot"><span class="header-section-number">5.0.3</span> The Forest Plot</h3>
+<section id="the-forest-plot" class="level2 page-columns page-full" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="the-forest-plot"><span class="header-section-number">5.3</span> The Forest Plot</h2>
+<p>(See Ch6 Harrer <em>et al</em>.) <br>The forest plot presents the results of the meta-analysis graphically. It uses the meta-analysis results created above which were stored in an object called <code>metaBdi</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="st">"forest_mean.png"</span>, <span class="at">width =</span> <span class="dv">3000</span>, <span class="at">height =</span> <span class="dv">1100</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(metaBdi, </span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> author, </span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">smlab =</span> <span class="st">"Forest Plot: Mean Values"</span>, </span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">overall=</span><span class="cn">TRUE</span>, </span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>, </span>
+<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">text.predict =</span> <span class="st">"Prediction interval"</span>, </span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">leftcols =</span> <span class="fu">c</span>(<span class="st">"author"</span>, <span class="st">'n'</span>), </span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Study"</span>, <span class="st">"N"</span>),  </span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">rightlabs =</span> <span class="fu">c</span>(<span class="st">"Mean"</span>, <span class="st">"95% CI"</span>, <span class="st">"Weight"</span>), </span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">plotwidth =</span> <span class="st">"7cm"</span>, </span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Mean value"</span>, </span>
+<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">colgap =</span> <span class="st">'0.5cm'</span>, </span>
+<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">colgap.forest =</span> <span class="st">'0.5cm'</span>, </span>
+<span id="annotated-cell-2-16"><a href="#annotated-cell-2-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">colgap.forest.left =</span> <span class="st">'4.0cm'</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-17" class="code-annotation-target"><a href="#annotated-cell-2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">This line will save the plot in a png file. Can also save as a pdf() or svg(). Harrer <em>et al</em>. Ch6.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="17" data-code-annotation="2">Turns off the png() function.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>By default, the columns to the left of the plot will include study label and N. You can specify which columns to include with <code>leftcols()</code>. <code>rightcols()</code> specifies which columns appear on the right and <code>leftlabs()</code> and <code>rightlabs()</code> specify their titles (you can type in whatever you like within the inverted commas). Other arguments specify layout - see Harrer <em>et al</em>. Ch 6.<br></p>
+<p>The forest plot looks like this:</p>
+<div class="page-columns page-full">
+<div class="quarto-figure quarto-figure-right page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><img src="forest_mean.png" class="img-fluid quarto-figure quarto-figure-right figure-img column-body-outset" style="width:110.0%"></p>
+</figure>
+</div>
+</div>
 </section>
-<section id="influence-diagnostics" class="level3" data-number="5.0.4">
-<h3 data-number="5.0.4" class="anchored" data-anchor-id="influence-diagnostics"><span class="header-section-number">5.0.4</span> Influence Diagnostics</h3>
+<section id="influence-diagnostics" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="influence-diagnostics"><span class="header-section-number">5.4</span> Influence Diagnostics</h2>
+<p>Influential cases have a large impact on the pooled effect or heterogeneity, regardless of how high or low the effect is. For example one very large study will have a high weight and may influence the pooled effect strongly. Outliers may be influential, but not always.<br> <br> <code>(a)</code> To calculate influence diagnostics, use the <code>InfluenceAnalysis()</code> function (part of the <code>dmetar</code> package):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>meta.mean.infl <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(metaBdi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in top right have strong effect on heterogeneity and pooled effect.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.mean.infl, <span class="st">"baujat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the Baujat plot">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the Baujat plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Single_mean_files/figure-html/meanBau2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><code>(c)</code> A plot of the full influence diagnostics can be seen with the <code>plot()</code> function.<br> Studies thought to be influential are displayed in red.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.mean.infl, <span class="st">"influence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the influence diagnostics plot plot">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the influence diagnostics plot plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Single_mean_files/figure-html/meanInfl2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol type="a">
+<li>Stand. residual: standardised residuals are the standardised deviation of the effect size of each paper from the pooled effect size.<br></li>
+<li>DFFITS value: reports similar effect to Stand. residuals. Indicates how much the pooled effect changes when a study is removed, expressed in standard deviations (<em>ie</em> how much influence the paper has).<br></li>
+<li>Cook’s distance: similar to DFFITS calculation, but only has +ve values. Large value = strong influence.<br></li>
+<li>Covariance ratio: calculates how variance of the pooled effect size changes when a study is removed. Value &lt;1 indicates that removing a study results in a more precise estimate of the pooled effect size.<br></li>
+<li>Tau-squared (L-O-O means Leave one out) &amp; Q values: Tau-square (variance of the pooled effect size) and Q-values when each study is excluded.<br></li>
+<li>Hat and Weight values: weight is simply the size of the study. Higher weight = greater precision of a study. Weights used to calc pooled effect size. Inverse of the variance of a study = weight. HAT value is similar.</li>
+</ol>
+</div>
+</div>
+</div>
 </section>
-<section id="publication-bias" class="level3" data-number="5.0.5">
-<h3 data-number="5.0.5" class="anchored" data-anchor-id="publication-bias"><span class="header-section-number">5.0.5</span> Publication Bias</h3>
+<section id="publication-bias" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="publication-bias"><span class="header-section-number">5.5</span> Publication Bias</h2>
+<p>Publication bias occurs when studies, usually smaller ones, are not published because they do not report statistically significant effects. Consequently, a meta-analysis could over-emphasise an effect if such papers are excluded. Publication bias tests attempt to estimate if there might be such missing papers.<br> Here, we will create (1) a funnel plot, (2) perform Egger’s regression test and (3) Duval &amp; Tweedie’s trim-and-fill test. <br></p>
+<section id="the-funnel-plot" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="the-funnel-plot"><span class="header-section-number">5.5.1</span> The Funnel Plot</h3>
+<p>To generate a funnel plot for the <code>metaBdi</code> object that stores the results of the meta-analysis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(metaBdi, </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Mean"</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2">2</button><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3">3</button><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pos.studlab =</span> <span class="dv">3</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4">4</button><span id="annotated-cell-6-5" class="code-annotation-target"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.studlab =</span> <span class="fl">0.6</span>,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="5">5</button><span id="annotated-cell-6-6" class="code-annotation-target"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">28</span>, <span class="fl">34.5</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="1">Specifies the label on the x-axis</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="2">To add labels to each study</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="4" data-code-annotation="3">The number indicates the position of the labels. 3 means centered.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="5" data-code-annotation="4">Changes the font size of the text for the study labels</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="6" data-code-annotation="5">Use xlim() if you want to change the range on the x-axis</span>
+</dd>
+</dl>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the funnel plot">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the funnel plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Single_mean_files/figure-html/funnel.Bdi2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
 </section>
-<section id="the-funnel-plot" class="level3" data-number="5.0.6">
-<h3 data-number="5.0.6" class="anchored" data-anchor-id="the-funnel-plot"><span class="header-section-number">5.0.6</span> The Funnel Plot</h3>
+<section id="eggers-regression" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="eggers-regression"><span class="header-section-number">5.5.2</span> Egger’s Regression</h3>
+<p>Assesses funnel plot symmetry. If the funnel plot is symmetrical, it suggests that there are no missing studies.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metabias</span>(metaBdi, <span class="at">method.bias =</span> <span class="st">"linreg"</span>, <span class="at">k.min =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>NB</em> used <code>k.min=6</code> to make it do the test with less than 10 studies. We only have 6 studies here. Analyses with &lt;10 studies may lack power in Egger’s test.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see Egger's Regression test output">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see Egger’s Regression test output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     BDI-II Scores
+
+Linear regression test of funnel plot asymmetry
+
+Test result: t = -2.41, df = 4, p-value = 0.0739
+Bias estimate: -4.4627 (SE = 1.8549)
+
+Details:
+- multiplicative residual heterogeneity variance (tau^2 = 1.4302)
+- predictor: standard error
+- weight:    inverse variance
+- reference: Egger et al. (1997), BMJ</code></pre>
+</div>
+</div>
+<p>P &gt; 0.05 means the data is symmetrical, and there do not appear to be any missing studies.<br></p>
+</div>
+</div>
+</div>
+<p><br></p>
 </section>
-<section id="eggers-regression" class="level3" data-number="5.0.7">
-<h3 data-number="5.0.7" class="anchored" data-anchor-id="eggers-regression"><span class="header-section-number">5.0.7</span> Egger’s Regression</h3>
-</section>
-<section id="duval-tweedies-trim-and-fill" class="level3" data-number="5.0.8">
-<h3 data-number="5.0.8" class="anchored" data-anchor-id="duval-tweedies-trim-and-fill"><span class="header-section-number">5.0.8</span> Duval &amp; Tweedie’s trim-and-fill</h3>
+<section id="duval-tweedies-trim-and-fill" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="duval-tweedies-trim-and-fill"><span class="header-section-number">5.5.3</span> Duval &amp; Tweedie’s trim-and-fill</h3>
+<p>If there is asymmetry, this imputes ‘missing’ studies and adds them until symmetry is achieved.<br> It assumes there are small studies that are missing. It re-does the meta-analysis and estimates pooled effect size as if all studies had been included.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tf.Bdi <span class="ot">&lt;-</span>  <span class="fu">trimfill</span>(metaBdi)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tf.Bdi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see Duval &amp; Tweedie's trim-and-fill output">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see Duval &amp; Tweedie’s trim-and-fill output
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     BDI-II Scores
+
+Number of studies: k = 8 (with 2 added studies)
+
+                        mean             95%-CI
+Random effects model 31.7251 [30.1342; 33.3160]
+Prediction interval          [27.8297; 35.6205]
+
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 2.3247 [0.5976; 16.6100]; tau = 1.5247 [0.7730; 4.0755]
+ I^2 = 73.0% [44.9%; 86.8%]; H = 1.92 [1.35; 2.75]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 25.93    7  0.0005
+
+Details of meta-analysis methods:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 7)
+- Prediction interval based on t-distribution (df = 7)
+- Trim-and-fill method to adjust for funnel plot asymmetry (L-estimator)
+- Untransformed (raw) means</code></pre>
+</div>
+</div>
+<p>Here, you can see that the function has added two additional studies which it has assumed have not been published.<br> The new overall mean effect size is 31.7251 (increased slightly from 31.12). But the heterogeneity has increased from I<sup>2</sup>=64.3% to 73.0%.</p>
+</div>
+</div>
+</div>
+<p><br> You can then also re-do the funnel plot, using the <code>tf.Bdi</code> object that we have just created above, with the imputed studies added:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(tf.Bdi, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Mean"</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pos.studlab =</span> <span class="dv">3</span>, </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.studlab =</span> <span class="fl">0.6</span>, </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">36</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the revised funnel plot">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to see the revised funnel plot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Single_mean_files/figure-html/DT.Bdi.funnel2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The ‘imputed’ studies that are added are shown with open circles.<br> Two imputed studies have been added to the right to balance the more extreme results reported by Quilty and Dozois.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
