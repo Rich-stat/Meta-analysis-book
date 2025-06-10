@@ -245,6 +245,7 @@ Click to see guidance to import and prepare the data
 <div class="callout-body-container callout-body">
 <ul>
 <li>Download the example Excel file <code>Meta analysis Binary data.xlsx</code> from Canvas and save it to your working directory (remember to set the location where you save this file as your working directory in RStudio).</li>
+<li>This shows the number of people who recover in a treatment group (Recov.treat) and a control group (Recov.con), together with the total numbers of participants in each group.</li>
 <li>Import the file to R and store it as a dataframe object called <code>meta.bin</code>:</li>
 </ul>
 <div class="cell">
@@ -272,13 +273,22 @@ Click to see guidance to import and prepare the data
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 16%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 7%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Author</th>
-<th style="text-align: right;">Ee</th>
-<th style="text-align: right;">Ne</th>
-<th style="text-align: right;">Ec</th>
-<th style="text-align: right;">Nc</th>
+<th style="text-align: right;">Recov.treat</th>
+<th style="text-align: right;">N.treat</th>
+<th style="text-align: right;">Recov.con</th>
+<th style="text-align: right;">N.con</th>
 <th style="text-align: left;">Subgroup</th>
 <th style="text-align: left;">RoB</th>
 </tr>
@@ -379,13 +389,22 @@ Click to see guidance to import and prepare the data
 </div>
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Author</th>
-<th style="text-align: left;">Ee</th>
-<th style="text-align: left;">Ne</th>
-<th style="text-align: left;">Ec</th>
-<th style="text-align: left;">Nc</th>
+<th style="text-align: left;">Recov.treat</th>
+<th style="text-align: left;">N.treat</th>
+<th style="text-align: left;">Recov.con</th>
+<th style="text-align: left;">N.con</th>
 <th style="text-align: left;">Subgroup</th>
 <th style="text-align: left;">RoB</th>
 </tr>
@@ -417,13 +436,22 @@ Click to see guidance to import and prepare the data
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 14%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Author</th>
-<th style="text-align: left;">Ee</th>
-<th style="text-align: left;">Ne</th>
-<th style="text-align: left;">Ec</th>
-<th style="text-align: left;">Nc</th>
+<th style="text-align: left;">Recov.treat</th>
+<th style="text-align: left;">N.treat</th>
+<th style="text-align: left;">Recov.con</th>
+<th style="text-align: left;">N.con</th>
 <th style="text-align: left;">Subgroup</th>
 <th style="text-align: left;">RoB</th>
 </tr>
@@ -452,7 +480,7 @@ Click to see guidance to import and prepare the data
 <h2 data-number="3.2" class="anchored" data-anchor-id="the-meta-analysis"><span class="header-section-number">3.2</span> The meta-analysis</h2>
 <p>(See Ch4 Harrer <em>et al</em>.)<br> This will use a random effects model using the imported binary data stored in the <code>meta.bin</code> object and the <code>metabin()</code> function. The meta-analysis results are stored in an object called <code>meta.bin.result</code>.<br><br> This data set has two sub-groups: studies on (a) adults and (b) youths. This meta-analysis will therefore analyse these separately as sub-groups as well as combining all studies. The code therefore has a line specifying ‘subgroup’ as the column in the data headed ‘Subgroup’.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>meta1.bin.result <span class="ot">&lt;-</span> <span class="fu">metabin</span>(<span class="at">event.e =</span> Ee, <span class="at">n.e =</span> Ne, <span class="at">event.c =</span> Ec, <span class="at">n.c =</span> Nc,</span>
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>meta1.bin.result <span class="ot">&lt;-</span> <span class="fu">metabin</span>(<span class="at">event.e =</span> Recov.treat, <span class="at">n.e =</span> N.treat, <span class="at">event.c =</span> Recov.con, <span class="at">n.c =</span> N.con,</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> meta.bin,</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">studlab =</span> Author,</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">subgroup =</span> Subgroup,</span>
@@ -615,8 +643,8 @@ To see the log odds (log<sub>e</sub>) value of the pooled effect size
 <span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">overall=</span><span class="cn">TRUE</span>, </span>
 <span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>, </span>
 <span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">text.predict =</span> <span class="st">"Prediction interval"</span>, </span>
-<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">leftcols =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">'Ee'</span>, <span class="st">'Ne'</span>, <span class="st">'Ec'</span>, <span class="st">'Nc'</span>), </span>
-<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Study"</span>, <span class="st">"E.Event"</span>, <span class="st">"E.N"</span>, <span class="st">"C.Event"</span>, <span class="st">"C.N"</span>), </span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">leftcols =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">'Recov.treat'</span>, <span class="st">'N.treat'</span>, <span class="st">'Recov.con'</span>, <span class="st">'N.con'</span>), </span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Study"</span>, <span class="st">"E.Recovery"</span>, <span class="st">"E.Total"</span>, <span class="st">"C.Recovery"</span>, <span class="st">"C.Total"</span>), </span>
 <span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">plotwidth =</span> <span class="st">"8cm"</span>, </span>
 <span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Odds Ratio"</span>, </span>
 <span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">label.left =</span> <span class="st">"Favours Control"</span>, </span>
@@ -653,7 +681,7 @@ To see the log odds (log<sub>e</sub>) value of the pooled effect size
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>meta.bin.infl <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(meta.bin.result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in top right have strong effect on heterogeneity and pooled effect.</p>
+<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in the top right have a strong effect on heterogeneity and on the pooled effect.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.bin.infl, <span class="st">"baujat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -785,7 +813,7 @@ Click to see the funnel plot
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="eggers-regression"><span class="header-section-number">3.5.2</span> Egger’s Regression</h3>
 <p>Assesses funnel plot symmetry. If the funnel plot is symmetrical, it suggests that there are no missing studies.<br> In this case, <code>meta.bin</code> has subgroups. Egger’s regression test cannot be performed on a meta-analysis with subgroups. So, I will re-do the above meta-analysis without the subgroups and store it in another object called <code>meta.bin.resultE</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>meta.bin.resultE <span class="ot">&lt;-</span> <span class="fu">metabin</span>(<span class="at">event.e =</span> Ee, <span class="at">n.e =</span> Ne, <span class="at">event.c =</span> Ec, <span class="at">n.c =</span> Nc, </span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>meta.bin.resultE <span class="ot">&lt;-</span> <span class="fu">metabin</span>(<span class="at">event.e =</span> Recov.treat, <span class="at">n.e =</span> N.treat, <span class="at">event.c =</span> Recov.con, <span class="at">n.c =</span> N.con, </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> meta.bin,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">studlab =</span> Author,  </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">common =</span> <span class="cn">FALSE</span>,  </span>
