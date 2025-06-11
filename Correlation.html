@@ -245,6 +245,7 @@ Click to see guidance to import and prepare the data
 <div class="callout-body-container callout-body">
 <ul>
 <li>Download the example Excel file <code>Meta analysis corr data.xlsx</code> from Canvas and save it to your working directory (remember to set the location where you save this file as your working directory in RStudio).</li>
+<li>The data contains the Pearson correlation coefficients, r, (cor) and the total number of participants (n) in studies that investigated the association between health and well-being. It also sub-groups the studies into those that focussed on the general population or participants with a chronic condition.</li>
 <li>Import the file to R and store it as a dataframe object called <code>meta.corr</code>:</li>
 </ul>
 <div class="cell">
@@ -697,8 +698,9 @@ Details of meta-analysis methods:
 <li>the effect sizes (COR; the correlation coefficients) and their CIs for each study</li>
 <li>the overall effect size = 0.3632; it is statistically significantly different from 1 (no effect) because P &lt; 0.0001.</li>
 <li>There is high heterogeneity between the studies: I<sup>2</sup> = 99.8%, Q p-value &lt;0.001</li>
-<li>The 2 sub-group effect sizes are 0.3291 (chronic) and 0.3793 (general), but the two groups are not statistically significantly different (P=0.2875) <br><br></li>
+<li>The 2 sub-group effect sizes are 0.3291 (chronic) and 0.3793 (general), but the two groups are not statistically significantly different (P=0.2875) <br></li>
 </ul>
+<p><em>NB</em> Correlation coefficients are limited in range between -1 and +1. They therefore tend not to form a normal distribution. To get around this, they are transformed by the <code>metacor()</code> function into Fisher’s z scores. They are then converted back to correlation coefficients in the output. <br><br></p>
 </section>
 <section id="the-forest-plot" class="level2 page-columns page-full" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="the-forest-plot"><span class="header-section-number">4.3</span> The Forest Plot</h2>
@@ -750,7 +752,7 @@ Details of meta-analysis methods:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>m.cor.infl <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in top right have strong effect on heterogeneity and pooled effect.</p>
+<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in the top right have a strong effect on heterogeneity and on the pooled effect.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m.cor.infl, <span class="st">"baujat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

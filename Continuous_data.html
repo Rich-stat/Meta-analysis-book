@@ -245,6 +245,7 @@ Click to see guidance to import and prepare the data
 <div class="callout-body-container callout-body">
 <ul>
 <li>Download the example Excel file <code>Meta continuous data.xlsx</code> from Canvas and save it to your working directory (remember to set the location where you save this file as your working directory in RStudio).</li>
+<li>This shows the means (M), the standard deviation (S) and the total number of values (N) in each experimental (e) and control (c) groups. It also identifies sub-groups of studies on adults or youths.</li>
 <li>Import the file to R and store it as a dataframe object called <code>meta1</code>:</li>
 </ul>
 <div class="cell">
@@ -688,7 +689,7 @@ Details of meta-analysis methods:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meta.cont.infl <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(meta1.cont)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in top right have strong effect on heterogeneity and pooled effect.</p>
+<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in the top right a have strong effect on heterogeneity and on the pooled effect.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.cont.infl, <span class="st">"baujat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
