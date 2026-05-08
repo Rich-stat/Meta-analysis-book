@@ -683,11 +683,11 @@ To see the log odds (log<sub>e</sub>) value of the pooled effect size
 </section>
 <section id="influence-diagnostics" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="influence-diagnostics"><span class="header-section-number">3.4</span> Influence Diagnostics</h2>
-<p>Influential cases have a large impact on the pooled effect or heterogeneity, regardless of how high or low the effect is. For example one very large study will have a high weight and may influence the pooled effect strongly. Outliers may be influential, but not always.<br> <br> <code>(a)</code> To calculate influence diagnostics, use the <code>InfluenceAnalysis()</code> function (part of the <code>dmetar</code> package):</p>
+<p>Influential cases have a large impact on the pooled effect or heterogeneity, regardless of how high or low the effect is. For example one very large study will have a high weight and may influence the pooled effect strongly. Outliers may be influential, but not always.<br> <br> <code>(a)</code> To calculate <strong>influence diagnostics</strong>, use the <code>InfluenceAnalysis()</code> function (part of the <code>dmetar</code> package):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>meta.bin.infl <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(meta.bin.result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in the top right have a strong effect on heterogeneity and on the pooled effect.</p>
+<p><code>(b)</code> Then create a <strong>Baujat plot</strong> using the data stored in the <code>meta.bin.infl</code> object: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in the top right have a strong effect on heterogeneity and on the pooled effect.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.bin.infl, <span class="st">"baujat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -715,7 +715,7 @@ Click to see the Baujat plot
 </div>
 </div>
 </div>
-<p><code>(c)</code> A plot of the full influence diagnostics can be seen with the <code>plot()</code> function.<br> Studies thought to be influential are displayed in red.</p>
+<p><code>(c)</code> A plot of the <strong>full influence diagnostics</strong> stored in the <code>meta.bin.infl</code> object can be seen with the <code>plot()</code> function.<br> Studies thought to be influential are displayed in red.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.bin.infl, <span class="st">"influence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
