@@ -198,6 +198,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Proportions</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Pre-calculated_effect_sizes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Pre-calculated effect sizes</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -525,10 +531,16 @@ Details of meta-analysis methods:
 <p>Influential cases have a large impact on the pooled effect or heterogeneity, regardless of how high or low the effect is. For example one very large study will have a high weight and may influence the pooled effect strongly. Outliers may be influential, but not always.<br> <br> <code>(a)</code> To calculate influence diagnostics, use the <code>InfluenceAnalysis()</code> function (part of the <code>dmetar</code> package):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>meta.mean.infl <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(metaBdi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+ℹ The deprecated feature was likely used in the dmetar package.
+  Please report the issue to the authors.</code></pre>
+</div>
 </div>
 <p><code>(b)</code> Then create a Baujat plot: this detects studies that strongly influence heterogeneity. It shows the contribution of each paper to heterogeneity on x-axis &amp; its influence (via leave-one-out method) on the pooled effect size on y-axis. Studies in the top right have a strong effect on heterogeneity and on the pooled effect.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.mean.infl, <span class="st">"baujat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.mean.infl, <span class="st">"baujat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the Baujat plot">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -556,7 +568,7 @@ Click to see the Baujat plot
 </div>
 <p><code>(c)</code> A plot of the full influence diagnostics can be seen with the <code>plot()</code> function.<br> Studies thought to be influential are displayed in red.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.mean.infl, <span class="st">"influence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(meta.mean.infl, <span class="st">"influence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the influence diagnostics plot plot">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -584,8 +596,8 @@ Click to see the influence diagnostics plot plot
 <li>DFFITS value: reports similar effect to Stand. residuals. Indicates how much the pooled effect changes when a study is removed, expressed in standard deviations (<em>ie</em> how much influence the paper has).<br></li>
 <li>Cook’s distance: similar to DFFITS calculation, but only has +ve values. Large value = strong influence.<br></li>
 <li>Covariance ratio: calculates how variance of the pooled effect size changes when a study is removed. Value &lt;1 indicates that removing a study results in a more precise estimate of the pooled effect size.<br></li>
-<li>Tau-squared (L-O-O means Leave one out) &amp; Q values: Tau-square (variance of the pooled effect size) and Q-values when each study is excluded.<br></li>
-<li>Hat and Weight values: weight is simply the size of the study. Higher weight = greater precision of a study. Weights used to calc pooled effect size. Inverse of the variance of a study = weight. HAT value is similar.</li>
+<li>Tau-squared (L-O-O means Leave one out) &amp; Q values: Tau-square (variance of the pooled effect size) and Q heterogeneity values when each study is excluded.<br></li>
+<li>Hat and Weight values: Weight = inverse of the variance of a study. HAT value is similar. Weight reflects the size of the study, assuming larger studies have smaller standard errors. Higher weight = greater precision of a study. Weights are used to calculate pooled effect size.</li>
 </ol>
 </div>
 </div>
@@ -659,7 +671,7 @@ Click to see the funnel plot
 <h3 data-number="5.5.2" class="anchored" data-anchor-id="eggers-regression"><span class="header-section-number">5.5.2</span> Egger’s Regression</h3>
 <p>Assesses funnel plot symmetry. If the funnel plot is symmetrical, it suggests that there are no missing studies.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metabias</span>(metaBdi, <span class="at">method.bias =</span> <span class="st">"linreg"</span>, <span class="at">k.min =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metabias</span>(metaBdi, <span class="at">method.bias =</span> <span class="st">"linreg"</span>, <span class="at">k.min =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>NB</em> used <code>k.min=6</code> to make it do the test with less than 10 studies. We only have 6 studies here. Analyses with &lt;10 studies may lack power in Egger’s test.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see Egger's Regression test output">
@@ -700,8 +712,8 @@ Details:
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="duval-tweedies-trim-and-fill"><span class="header-section-number">5.5.3</span> Duval &amp; Tweedie’s trim-and-fill</h3>
 <p>If there is asymmetry, this imputes ‘missing’ studies and adds them until symmetry is achieved.<br> It assumes there are small studies that are missing. It re-does the meta-analysis and estimates pooled effect size as if all studies had been included.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tf.Bdi <span class="ot">&lt;-</span>  <span class="fu">trimfill</span>(metaBdi)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tf.Bdi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tf.Bdi <span class="ot">&lt;-</span>  <span class="fu">trimfill</span>(metaBdi)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tf.Bdi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see Duval &amp; Tweedie's trim-and-fill output">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
@@ -750,12 +762,12 @@ Details of meta-analysis methods:
 </div>
 <p><br> You can then also re-do the funnel plot, using the <code>tf.Bdi</code> object that we have just created above, with the imputed studies added:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(tf.Bdi, </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Mean"</span>, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pos.studlab =</span> <span class="dv">3</span>, </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.studlab =</span> <span class="fl">0.6</span>, </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">36</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(tf.Bdi, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Mean"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">studlab =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pos.studlab =</span> <span class="dv">3</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.studlab =</span> <span class="fl">0.6</span>, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">36</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note no-icon callout-titled" title="Click to see the revised funnel plot">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
