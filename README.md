@@ -1,0 +1,1 @@
+This book is to teach undergraduate students how to perform a meta-analysis.  It is based on Harrer et al.'s 'Doing Meta-Analysis with R: A Hands-On Guide'. Boca Raton, FL and London: Chapman & Hall/CRC Press. ISBN 978-0-367-61007-4.
