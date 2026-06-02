@@ -1,0 +1,29 @@
+# Introduction
+
+This guide shows you how to carry out meta analyses for six different types of data:<br>
+
+-   **Continuous data** where there are mean and standard deviation values for both an experimental/treatment group and a control group;
+-   **Binary data** where there are counts of binary events (*eg* success or failure, male or female, survival or death, heads or tails *etc*) in a treatment group and a control group;
+-   **Correlations** where papers report the strength of a relationship between 2 variables;
+-   Papers that report just a **single mean** and standard deviation as the result;
+-   **Proportions**. For example, where the number of people out of a total respond in a particular way;
+-   **Pre-calculated effect sizes**: if papers report effect sizes such as Hazard Ratios, Risk Ratios, Odds Ratios, or standardised mean differences, you can use this method.
+
+To get started, you will need to load the following packages to R (open the box below):
+
+::: {.callout-important appearance="simple" collapse="true" title="Click to see packages to load (Copy and paste to Script editor)"}
+```{r}
+#| label: packages
+#| echo: TRUE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(rio)
+library(meta)
+library(dmetar)
+```
+
+To be able to load `dmetar`, you must install it first from:<br> `devtools::install_github("MathiasHarrer/dmetar")`<br> <br>It needs \``` devtools` `` to have been installed already. <br>\``` dmetar` `` makes some aspects of meta-analysis easier in R. Once installed, you can load dmetar
+:::
+
+<br> **Recommended text (online and free) for this subject.** <br>Click on the image to go to the book: <br><br> [![Harrer et al.](Harrer-cover.png)](https://doing-meta.guide)
