@@ -888,7 +888,7 @@ Click to see the funnel plot
 </section>
 <section id="eggers-regression" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="eggers-regression"><span class="header-section-number">4.5.2</span> Egger’s Regression</h3>
-<p>Assesses funnel plot symmetry. If the funnel plot is symmetrical, it suggests that there are no missing studies.<br> In this case, <code>m.cor</code> has subgroups. Egger’s regression test cannot be performed on a meta-analysis with subgroups. So, I will re-do the above meta-analysis without the subgroups and store it in another object called <code>m.corE</code>:</p>
+<p>Assesses funnel plot symmetry due to small study effects (<em>ie</em> do small studies seem to show unusual results?). If the funnel plot is symmetrical, it suggests that there are no missing studies &amp; small studies are not reporting unusual results.<br> In this case, <code>m.cor</code> has subgroups. Egger’s regression test cannot be performed on a meta-analysis with subgroups. So, I will re-do the above meta-analysis without the subgroups and store it in another object called <code>m.corE</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m.corE <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> cor, </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> n,</span>
